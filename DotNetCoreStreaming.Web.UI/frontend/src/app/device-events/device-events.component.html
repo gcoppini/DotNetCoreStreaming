@@ -1,0 +1,49 @@
+<br/>
+<p>
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+  <mat-button-toggle value="bold" (click)="PlayPause()">{{this.isalive}}</mat-button-toggle>
+  <mat-button-toggle value="italic" (click)="Clear()">Clear</mat-button-toggle>
+  <mat-button-toggle value="underline">Underline</mat-button-toggle>
+</mat-button-toggle-group>
+  {{this.isalive}}
+</p>
+<p>
+  <span matBadge="{{this.events.length}}" matBadgeOverlap="false">Event Count</span>
+</p>
+
+<div>
+  <span *ngIf="isOpen" id="heart" class="centered" [@simpleFadeOutAnimation]="'in'"></span>
+</div>
+
+<div fxLayout="row" fxFlex.md="70" fxLayoutWrap class="card-deck-container mat-elevation-z4">
+  <div fxFlex *ngFor="let event of this.deviceEvents" class="card-item">
+    <mat-card class="example-card" [@simpleFadeAnimation]="'in'">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{event.Id}}</mat-card-title>
+        <mat-card-subtitle>{{event.Nome}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://picsum.photos/seed/{{event.Id}}/200/300" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+      </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+  </div>
+  <div class="paginator mat-elevation-z4">
+    <md-paginator
+      [length]="10"
+      [pageSize]="10"
+      [pageSizeOptions]="[12, 24]"
+      (page)="toggle()">
+    </md-paginator>
+  </div>
+
+</div>
